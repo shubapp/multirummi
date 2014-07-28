@@ -1,0 +1,1 @@
+var multiRummi = angular.module('multiRummi', []);
