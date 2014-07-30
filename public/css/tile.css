@@ -54,6 +54,9 @@
 	font-weight: bold;
 	text-shadow:2px 0 1px #AFADA4, -2px 0 1px #FDF8E2, 0 2px 1px #BEBCB1, 0 -2px 1px #F0E9CB;
 }
+.numberContainer .fa{
+	font-size: 1.5em;
+}
 .tileContainer .brand{
 	color: transparent;
 	text-align: center;
