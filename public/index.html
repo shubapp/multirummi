@@ -10,26 +10,11 @@
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/lib/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/board.css">
+	<link rel="stylesheet" type="text/css" href="css/tile.css">
 </head>
 <body>
-	<div class="container">
-		<div class="jumbotron">
-			<h1>Multi Rummi</h1>
-			<p>The greatest game ever!</p>
-			<input type="text" class="form-control" placeholder="Name" />
-		</div>
-
-		<div class="row">
-			<div class="col-xs-offset-4 col-xs-4">
-				<button type="button" class="btn btn-primary btn-lg btn-block">Start a game</button> 
-			</div>
-		</div>
-		<br/>
-		<div class="row">
-			<div class="col-xs-offset-4 col-xs-4">
-				<button type="button" class="btn btn-primary btn-lg btn-block">Join a game</button> 
-			</div>
-		</div>
+	<div class="container" ng-view>
 	</div>
 
 
@@ -39,8 +24,6 @@
 <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/lib/socket.io-1.0.6.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript">
-	var socket = io();
-</script>
+<script type="text/javascript" src="js/controllers/controllers.js"></script>
 </body>
 </html>
