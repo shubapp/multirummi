@@ -19,6 +19,8 @@ app.get('*', function(req, res){
 	res.redirect('/#' + req.originalUrl);
 });
 
+server.listen(80);
+
 io.sockets.on('connection', function(socket) {
  	console.log('a user connected');
  	socket.on('disconnect', function() {
@@ -26,6 +28,5 @@ io.sockets.on('connection', function(socket) {
 	});
 });
 
-// app.listen(80);
-io.listen(80);
+
 board.initBoard();
