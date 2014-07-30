@@ -1,6 +1,10 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
+
+var bodyParser = require('body-parser');
+
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 var board = require('./board');
 
@@ -15,5 +19,13 @@ app.get('*', function(req, res){
 	res.redirect('/#' + req.originalUrl);
 });
 
-app.listen(80);
+io.sockets.on('connection', function(socket) {
+ 	console.log('a user connected');
+ 	socket.on('disconnect', function() {
+    	console.log('user disconnected');
+	});
+});
+
+// app.listen(80);
+io.listen(80);
 board.initBoard();

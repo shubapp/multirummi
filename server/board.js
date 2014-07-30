@@ -19,8 +19,8 @@ exports.initBoard = function () {
 	shuffleDeck(tileDeck);
 	// dealTiles(tileDeck);
 
-	console.log(validateBoard([[{number: 2, color: "blue"}, {number: 2, color: "red"}, {number: 2, color: "yellow"}],
-							   [{number: 11, color: "blue"}, {number: 0, color: "blue"}, {number: 13, color: "blue"}]]));
+	// console.log(validateBoard([[{number: 2, color: "blue"}, {number: 2, color: "red"}, {number: 2, color: "yellow"}],
+	// 						   [{number: 11, color: "blue"}, {number: 0, color: "blue"}, {number: 13, color: "blue"}]]));
 }
 
 function shuffleDeck(deck) {
