@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
+var board = require('./board');
+
 app.use(bodyParser());
 app.use(express.static(__dirname + "/../public"));
 
@@ -14,3 +16,4 @@ app.get('*', function(req, res){
 });
 
 app.listen(80);
+board.initBoard();
