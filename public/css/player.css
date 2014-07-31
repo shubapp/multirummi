@@ -1,32 +1,26 @@
-#playerBoard {
+#playerBoard{
+	background:url(../img/dark_wood.png);
+	/*background:url(http://subtlepatterns.com/patterns/wood_pattern.png);*/
+}
+#playerBoard button{
+	height: 4em;
+	width: 4em;
+	margin: 0 1em;
+	margin-bottom: 100vh; 
+	margin-top: -63vh; 
+}
+#playerScroll{
+	width: 95.4%;
+	height: 100vh;
 	overflow: hidden;
-	overflow-x: scroll;
+	overflow-x:scroll;
+	display: inline-block;
 }
-
-#playerScroll {
-	width: 9000px;
-}
-
-.playerTile1 {
-	display: block;
-	white-space: nowrap;
-	position: relative;
+.tileContainer {
+	margin-top: 100px;
 	float: left;
-	left: 0;
-	top: 0;
-	-webkit-animation: slideshow 10s linear infinite;
-	-moz-animation:    slideshow 10s linear infinite;
+	-webkit-transition: margin-top 1s;
 }
-
-.spacer {
-	width:2px;
-	height: 5px;
-	display: block;
-	white-space: nowrap;
-  	position: relative;
-  	float: left;
-  	left: 0;
-  	top: 0;
-  	-webkit-animation: slideshow 10s linear infinite;
-  	-moz-animation:    slideshow 10s linear infinite;
+#infinitePlace{
+	width: 90000px;
 }

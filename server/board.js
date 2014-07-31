@@ -41,6 +41,10 @@ function dealTiles(deck, players) {
 	}
 }
 
+exports.drawTile=function(){
+	return tileDeck.pop();
+}
+
 function validateBoard(board) {
 	for (var currSetIndex = 0; currSetIndex < board.length; currSetIndex++) {
 		var currSet = board[currSetIndex];

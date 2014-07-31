@@ -12,7 +12,7 @@ var API_PATH = '/api/';
 
 var playersSockets = [];
 var games = [];
-
+var currTurn=0;
 
 app.use(bodyParser());
 app.use(express.static(__dirname + "/../public"));
@@ -39,6 +39,10 @@ io.sockets.on('connection', function(socket) {
  	socket.on('joinGame', function(username) {
  		playersSockets.push({name: username, socket: socket});
  		console.log(username + " joined game");
+ 	});
+
+ 	socket.on('takeCard', function() {
+ 		playersSockets[currTurn].emit('takeCard',board.drawTile());
  	});
  	
  	socket.on('disconnect', function() {

@@ -1,9 +1,13 @@
-<div id="playerBoard" class="row">
+<div id="playerBoard">
+	<button type="button" class="btn btn-primary fa fa-arrow-right"></button>
 	<div id="playerScroll">
-		<div class="tileContainer playerTile1" ng-class="playerTile.color" ng-repeat="playerTile in playerDeck">
-			<div class="numberContainer">{{playerTile.number}}</div>
-			<div class="brand">Multi Rummi</div>
+		<div id="infinitePlace">
+			<div class="tileContainer" ng-class="playerTile.color" ng-repeat="playerTile in playerDeck">
+				<div class="numberContainer">{{playerTile.number}}</div>
+				<div class="brand">Multi Rummi</div>
+			</div>
 		</div>
+
 		<div class="spacer"></div>
 	</div>
 </div>
