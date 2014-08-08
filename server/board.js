@@ -1,10 +1,11 @@
 var tileDeck = [];
 var tilesColors = ["black", "blue", "red", "yellow"];
 var board = [];
-var players = [];
+var boardPlayers = [];
 var currPlayer;
 
-exports.initBoard = function () {
+exports.initBoard = function (players) {
+	boardPlayers = players;
 	for (var deckCount = 0; deckCount < 2; deckCount++) {
 		for (var deckColor = 0; deckColor < 4; deckColor++) {
 			for (var tileCount = 1; tileCount <= 13; tileCount++) {
@@ -17,7 +18,7 @@ exports.initBoard = function () {
 	tileDeck.push({number: 0, color: tilesColors[2]});
 
 	shuffleDeck(tileDeck);
-	// dealTiles(tileDeck);
+	dealTiles(tileDeck);
 
 	// console.log(validateBoard([[{number: 2, color: "blue"}, {number: 2, color: "red"}, {number: 2, color: "yellow"}],
 	// 						   [{number: 11, color: "blue"}, {number: 0, color: "blue"}, {number: 13, color: "blue"}]]));
@@ -32,17 +33,22 @@ function shuffleDeck(deck) {
 	}
 }
 
-function dealTiles(deck, players) {
-	for (var tilesCount = 0; tilesCount < 14; tilesCount++) {
-		for (var currPlayer = 0; currPlayer < players.length; currPlayer++) {
-			deck.pop();
-			// TODO: socket.io push
+function dealTiles(deck) {
+	for (var currPlayer = 0; currPlayer < boardPlayers.length; currPlayer++) {
+		var currPlayerTiles = [];
+
+		for (var tilesCount = 0; tilesCount < 14; tilesCount++) {
+			var currTile = deck.pop();
+			currPlayerTiles.push(currTile);
 		}
+
+		boardPlayers[currPlayer].socket.emit('clientTakeCard', currPlayerTiles);
 	}
 }
 
-exports.drawTile=function(){
-	return tileDeck.pop();
+exports.drawTile = function(){
+	var tilePop = tileDeck.pop();
+	return tilePop;
 }
 
 function validateBoard(board) {

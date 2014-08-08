@@ -7,6 +7,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var board = require('./board');
+var boardSocket;
 
 var API_PATH = '/api/';
 
@@ -35,20 +36,26 @@ app.post(API_PATH + 'games', function(req, res){
 server.listen(80);
 
 io.sockets.on('connection', function(socket) {
+ 	socket.on('hostGame', function(boardName) {
+ 		boardSocket = socket;
+ 	});
+
  	socket.on('startGame', function() {
-		board.initBoard();
+		board.initBoard(playersSockets);
  	});
 
  	socket.on('joinGame', function(username) {
+ 		socket.username = username;
  		playersSockets.push({name: username, socket: socket});
+ 		boardSocket.emit('playerJoined', username);
  		console.log(username + " joined game");
  	});
 
- 	socket.on('takeCard', function() {
- 		playersSockets[currTurn].emit('takeCard',board.drawTile());
+ 	socket.on('serverTakeCard', function() {
+ 		playersSockets[currTurn].socket.emit('clientTakeCard', [board.drawTile()]);
  	});
  	
  	socket.on('disconnect', function() {
-    	console.log('user disconnected');
+    	var username = socket.username;
 	});
 });

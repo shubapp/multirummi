@@ -1,0 +1,20 @@
+{
+  "name": "multirummi",
+  "version": "0.0.1",
+  "description": "The best game ever",
+  "main": "server/server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shubapp/multirummi.git"
+  },
+  "author": "Dean Shub & Ayelet Liberman & Yotam Roth",
+  "bugs": {
+    "url": "https://github.com/shubapp/multirummi/issues"
+  },
+  "homepage": "https://github.com/shubapp/multirummi",
+  "dependencies": {
+    "express": "4.7.2",
+    "body-parser": "1.5.2",
+    "socket.io": "1.0.6"
+  }
+}
