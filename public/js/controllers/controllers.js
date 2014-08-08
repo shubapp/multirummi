@@ -5,30 +5,42 @@ var controllers = {};
 var API_PATH = '/api/';
 
 controllers.playerController = function($scope, $location) {
+	$scope.playerDeck = [];
+
 	$scope.joinGame = function() {
 		if ($scope.username != "") {
 			socket.emit('joinGame', $scope.username);
 			$location.url('/player');
 		}
 	};
-	$scope.playerDeck = [{number:1, color:"black"},{number:2, color:"blue"},{number:3, color:"red"},{number:10, color:"yellow"},
-						 {number:0, color:"black"},{number:12, color:"blue"},{number:9, color:"yellow"},{number:11, color:"blue"},
-						 {number:2, color:"yellow"},{number:5, color:"red"},{number:6, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"},{number:7, color:"black"}];
-
-	socket.on('takeCard',function(tile){
-		$scope.playerDeck.push(tile);
+	
+	socket.on('clientTakeCard', function(tiles) {
+		$scope.$apply(function(){ 
+			$scope.playerDeck = $scope.playerDeck.concat(tiles);
+		});
 	});
+
+	$scope.takeCard = function(){
+		socket.emit('serverTakeCard');
+	};
 };
 
 controllers.hostController = function($scope, $http, $location) {
+	$scope.players = [];
+
 	$scope.hostGame = function() {
-		$http.post(API_PATH + 'games', {name: $scope.username});
+		// $http.post(API_PATH + 'games', {name: $scope.username});
 		$location.url('/host');
+		socket.emit('hostGame', $scope.username);
 	};
 
-	$scope.takeCard= function(){
-		socket.emit('takeCard');
+	$scope.startGame = function(){
+		socket.emit('startGame');
 	};
+
+	socket.on('playerJoined', function(username) {
+		$scope.players.push(username);
+	});
 };
 
 multiRummi.controller(controllers);
