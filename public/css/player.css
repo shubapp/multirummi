@@ -6,16 +6,21 @@
 	height: 4em;
 	width: 4em;
 	margin: 0 1em;
-	margin-bottom: 100vh; 
-	margin-top: -63vh; 
 }
 #playerScroll{
-	width: 95.4%;
+	width: 92.4vw;
 	height: 100vh;
 	overflow: hidden;
 	overflow-x:scroll;
 	display: inline-block;
+	margin-left: 7em;
 }
+
+#stageButton {
+	position: absolute;
+	top: 10em;
+}
+
 .tileContainer {
 	margin-top: 100px;
 	float: left;

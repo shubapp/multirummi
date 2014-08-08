@@ -1,5 +1,5 @@
 <div id="playerBoard">
-	<button type="button" class="btn btn-primary fa fa-arrow-right"></button>
+	<button id="stageButton" type="button" class="btn btn-primary fa fa-arrow-right"></button>
 	<div id="playerScroll">
 		<div id="infinitePlace">
 			<div class="tileContainer" ng-class="playerTile.color" ng-repeat="playerTile in playerDeck">
@@ -10,5 +10,4 @@
 
 		<div class="spacer"></div>
 	</div>
-	<button type="button" class="btn btn-primary fa fa-arrow-right" ng-click="takeCard()"></button>
 </div>
