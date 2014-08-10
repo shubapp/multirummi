@@ -25,3 +25,6 @@ html{
 	margin: 7% 0;
 	font-size: 1.2em;
 }
+#board .tileContainer{
+	float: left;
+}

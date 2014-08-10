@@ -77,3 +77,10 @@
 .black{
 	color: black;
 }
+
+.tileSpot{
+	border: 5px dashed white;
+	width: 110px;
+	height: 170px;
+	border-radius: 15px;
+}

@@ -1,11 +1,8 @@
 <div id="playerBoard">
-	<button id="stageButton" type="button" class="btn btn-primary fa fa-arrow-right"></button>
+	<button id="stageButton" type="button" class="btn btn-primary fa fa-arrow-up" ng-click="stageCards()"></button>
 	<div id="playerScroll">
-		<div id="infinitePlace">
-			<div class="tileContainer" ng-class="playerTile.color" ng-repeat="playerTile in playerDeck">
-				<div class="numberContainer">{{playerTile.number}}</div>
-				<div class="brand">Multi Rummi</div>
-			</div>
+		<div id="infinitePlace" sortable>
+			<tile ng-model="playerTile" ng-repeat="playerTile in playerDeck"></tile>
 		</div>
 
 		<div class="spacer"></div>

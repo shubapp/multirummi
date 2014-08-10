@@ -39,11 +39,7 @@ io.sockets.on('connection', function(socket) {
  	socket.on('hostGame', function(boardName) {
  		boardSocket = socket;
  	});
-
- 	socket.on('startGame', function() {
-		board.initBoard(playersSockets);
- 	});
-
+ 	
  	socket.on('joinGame', function(username) {
  		socket.username = username;
  		playersSockets.push({name: username, socket: socket});
@@ -51,8 +47,16 @@ io.sockets.on('connection', function(socket) {
  		console.log(username + " joined game");
  	});
 
+ 	socket.on('startGame', function() {
+		board.initBoard(playersSockets);
+ 	});
+
  	socket.on('serverTakeCard', function() {
  		playersSockets[currTurn].socket.emit('clientTakeCard', [board.drawTile()]);
+ 	});
+
+ 	socket.on('stageCards', function(tiles) {
+ 		boardSocket.emit('boardStageCards',tiles);
  	});
  	
  	socket.on('disconnect', function() {
