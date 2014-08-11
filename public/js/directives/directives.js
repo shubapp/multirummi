@@ -2,7 +2,7 @@ var multiRummi = angular.module('multiRummi.directives', []);
 
 var directives = {};
 
-directives.tile=function() {
+directives.tile = function() {
     return {
         restrict: 'E',
         templateUrl:'views/tile.html',
@@ -11,7 +11,11 @@ directives.tile=function() {
 			tile: '=ngModel'
 		},
         link: function(scope, element, attrs) {
-        	$(element).dblclick(function(){
+            if (scope.tile.number == 0) {
+                $(element).find('.numberContainer').html('<i class="fa fa-flash"></i>');
+            }
+
+        	$(element).dblclick(function() {
         		if ($(this).hasClass("active")){
         			$(this).removeClass("active");
         			removeTilesFromDeck([scope.tile], scope.$parent.stagingTiles);
@@ -24,7 +28,7 @@ directives.tile=function() {
     };
 };
 
-directives.tileBack=function() {
+directives.tileBack = function() {
     return {
         restrict: 'E',
         templateUrl:'views/tileBack.html',
@@ -32,7 +36,7 @@ directives.tileBack=function() {
     };
 };
 
-directives.tileSpot=function() {
+directives.tileSpot = function() {
     return {
         restrict: 'E',
         templateUrl:'views/tileSpot.html',
@@ -63,7 +67,14 @@ directives.droppable = function() {
 	return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-        	$(element).droppable({revert: true});
+        	$(element).droppable({revert: true,
+                drop: function(event, ui) {
+                    scope.$apply(function() { 
+                        var currTile = angular.element(ui.draggable).isolateScope().tile;
+                        removeTilesFromDeck([currTile], scope.stagingTiles);
+                        scope.boardSets.push([currTile]);
+                    });
+                }});
         }
     };
 };
